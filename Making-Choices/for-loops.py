@@ -23,3 +23,12 @@ message = 'Hello'
 
 for i in message:
     print(i)
+
+for i in range(3,10):
+    print(i)
+
+for i in range(5):
+    print(i)
+    
+for i in range(2,10,2):
+    print(i)
