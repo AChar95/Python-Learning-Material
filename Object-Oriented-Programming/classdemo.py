@@ -17,6 +17,10 @@ class Staff:
         self.pay = int(hours)*int(hourlyRate)
         return self.pay
     
+    #Overrides the + function for this class
+    def __add__(self, other):
+        return self.pay + other.pay
+    
     @property
     def position(self):
         print("Getter method")

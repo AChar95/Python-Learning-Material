@@ -8,3 +8,5 @@ print(john)
 print("Peter's Pay = ", peter.calculatePay())
 print("John120's Pay = ", john.calculatePay())
 print("John's Performance Bonus = ", john.calculatePerfBonus())
+totalPay = john + peter
+print("\nTotal pay for both staff = ", totalPay)
