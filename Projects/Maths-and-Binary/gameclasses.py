@@ -23,9 +23,9 @@ class BinaryGame:
         score = 0
         for i in range(self.noOfQuestions):
             base10 = randint(1,100)
+            userResult = input("Please enter %i in binary: " %(base10))
             while True:
                 try:
-                    userResult = input("Please enter %i in binary: " %(base10))
                     answer = int(userResult, base=2)
                     if answer == base10:
                         print("Congradulations, you have given the correct answer")
@@ -38,4 +38,44 @@ class BinaryGame:
                     print("The value you provide %s, is not binary, please try again" %(userResult))
                     userResult = input("Please enter a new value for %i in binary: " %(base10))
         return score
+
+class MathsGame:
+    def generateQuestions(self):
+        from random import randint
+        score = 0
+        numberList = [0,0,0,0,0]
+        symbolList = ['','','','']
+        operatorList = {1:"+", 2:"-", 3:"*", 4:"**"}
+        for i in range(self.noOfQuestions):
+            for index in range(0,4):
+                numberList[index] = randint(1,9)
+            for index in range(0,4):
+                if index > 0 and symbolList[index-1] == "**":
+                    symbolList[index] = operatorList[randint(1,3)]
+                else:
+                    symbolList[index] = operatorList[randint(1,4)]
+            questionList = str(numberList[0])
+            for z in range(0,4):
+                if z+1 <= 5:
+                    questionList = questionList + symbolList[z] + str(numberList[z+1])
+                else:
+                    break
+            result = eval(questionList)
+            questionList.replace("**", "^")
+            userResult = input("Please evaluate %s: " %(questionList))
+            while True:
+                try:
+                    answer = int(userResult)
+                    if userResult == result:
+                        print("Congradulations, you got the answer correct")
+                        score += 1
+                        break
+                    else: 
+                        print("Incorrect the correct answer is %i" %(result))
+                        break
+                except:
+                    print("The value provided %s, is not a valid integer. Please try again" %(userAnswer))
+                    userResult = input("Please enter a new answer for %s: " %(questionList))
+        return score
+
                 
