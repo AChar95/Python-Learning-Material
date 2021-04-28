@@ -18,6 +18,24 @@ class Game:
             self._noOfQuestions = value
 
 class BinaryGame:
-    import randint from random
-    
-    def generateQuestions(self, score = 0):
+    def generateQuestions(self):
+        from random import randint
+        score = 0
+        for i in range(self.noOfQuestions):
+            base10 = randint(1,100)
+            while True:
+                try:
+                    userResult = input("Please enter %i in binary: " %(base10))
+                    answer = int(userResult, base=2)
+                    if answer == base10:
+                        print("Congradulations, you have given the correct answer")
+                        self.score += 1
+                        break
+                    else:
+                        print("That was incorrect, the correct answer is {:b}.".format(base10))
+                        break
+                except:
+                    print("The value you provide %s, is not binary, please try again" %(userResult))
+                    userResult = input("Please enter a new value for %i in binary: " %(base10))
+        return score
+                
