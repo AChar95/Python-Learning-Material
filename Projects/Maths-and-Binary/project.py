@@ -23,7 +23,7 @@ try:
     userChoice = 0
     while userChoice != "-1":
         game = input("Please pick a game: Maths Game (1) or Binary Game (2): ")
-        if game != "1" or gmae != "2":
+        if game != "1" or game != "2":
             print("You have not selected a valid game type")
             
         
