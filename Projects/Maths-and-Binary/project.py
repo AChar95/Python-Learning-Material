@@ -41,4 +41,6 @@ try:
             bg.noOfQuestions = num
             printInstructions(binaryInstructions)
             score = score + bg.generateQuestions()
+        print("Your score is: %i" %(score))
+        userChoice = input("Do you wish to quit the game enter -1")
 except Exception as e:
