@@ -1,3 +1,5 @@
+from os import remove, rename
+
 inputFile = open('GitHub-Mark-Light-120px-plus.jpg', 'rb')
 outputFile = open('myotherimage.jpg', 'wb')
 
