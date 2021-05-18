@@ -17,7 +17,7 @@ class Game:
         else:
             self._noOfQuestions = value
 
-class BinaryGame:
+class BinaryGame(Game):
     def generateQuestions(self):
         from random import randint
         score = 0
@@ -39,7 +39,7 @@ class BinaryGame:
                     userResult = input("Please enter a new value for %i in binary: " %(base10))
         return score
 
-class MathsGame:
+class MathsGame(Game):
     def generateQuestions(self):
         from random import randint
         score = 0
@@ -61,12 +61,12 @@ class MathsGame:
                 else:
                     break
             result = eval(questionList)
-            questionList.replace("**", "^")
+            questionList = questionList.replace("**", "^")
             userResult = input("Please evaluate %s: " %(questionList))
             while True:
                 try:
                     answer = int(userResult)
-                    if userResult == result:
+                    if answer == result:
                         print("Congradulations, you got the answer correct")
                         score += 1
                         break
@@ -74,7 +74,7 @@ class MathsGame:
                         print("Incorrect the correct answer is %i" %(result))
                         break
                 except:
-                    print("The value provided %s, is not a valid integer. Please try again" %(userAnswer))
+                    print("The value provided %s, is not a valid integer. Please try again" %(userResult))
                     userResult = input("Please enter a new answer for %s: " %(questionList))
         return score
 

@@ -1,4 +1,4 @@
-from gamesclasses import Game, BinaryGame, MathsGame
+from gameclasses import Game, BinaryGame, MathsGame
 from gametask import printInstructions, getUserScore, updateUserScore
 
 try:
@@ -23,16 +23,17 @@ try:
     userChoice = 0
     while userChoice != "-1":
         game = input("Please pick a game: Maths Game (1) or Binary Game (2): ")
-        if game != "1" or game != "2":
+        while game != "1" and game != "2":
             print("You have not selected a valid game type")
+            game = input("Please pick a game: Maths Game (1) or Binary Game (2): ")
+        numQuestions = input("Please select the number of questions between 1 to 10: ")
         while True:
             try:
-                numQuestions = input("Please select the number of questions between 1 to 10")
                 num = int(numQuestions)
                 break
             except:
                 print("The value %s is not a valid number please try again")
-                numQuestions = input("Please select a valid number of questions between 1 to 10")
+                numQuestions = input("Please select a valid number of questions between 1 to 10: ")
         if game == "1":
             mg.noOfQuestions = num
             printInstructions(mathsInstructions)
@@ -42,5 +43,10 @@ try:
             printInstructions(binaryInstructions)
             score = score + bg.generateQuestions()
         print("Your score is: %i" %(score))
-        userChoice = input("Do you wish to quit the game enter -1")
+        userChoice = input("Do you wish to quit the game enter -1: ")
+        updateUserScore(newUser, userName, str(score))
+except ValueError:
+    print("Error: You did not enter a number")       
 except Exception as e:
+    print("An unknown error occured the program will now exit")
+    print("Unknown Error: ", e)
