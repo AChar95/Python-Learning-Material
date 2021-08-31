@@ -26,6 +26,7 @@ def printMemberAge(**age): # This allows you to take in a random amount of key=v
 printMemberAge(Peter = 30, Jon = 90)
 
 '''
-When a function can takin formal, nonkeyworded and keyword variables
+When a function can take in formal, nonkeyworded and keyword variables
 Then the following must be used:
 def someFunction(farg, *args, **kwargs):
+'''
