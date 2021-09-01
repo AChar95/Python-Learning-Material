@@ -1,4 +1,4 @@
-import os, sys, random as rand
+import os, csv, sys, random as rand
 
 
 class magic8ball:
@@ -17,6 +17,7 @@ class magic8ball:
                 print(answers[rand.randint(0,len(answers)-1)])
             else:
                 print("Thank you for playing")
+                self.__writeQuestions()
                 sys.exit
     
     def __writeQuestions(self):
@@ -25,8 +26,11 @@ class magic8ball:
             testFile = os.path.isfile(fileName +".csv")
             if testFile == False:
                 print("Creating your Question file")    
-            file = open(fileName, "a+")
-            
+            file = open(fileName, "a+", newline="")
+            wrt = csv.writer(file)
+            for question in self.__mQuestions:
+                wrt.writerow(question)
+            file.close()
             
         except IOError:
             newFile = open(fileName, 'w')
