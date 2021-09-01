@@ -1,10 +1,11 @@
 import os, csv, sys, random as rand
 
 
-class magic8ball:
+class Magic8Ball:
     def __init__(self, name):
         self.name = name
         self.__mQuestions = []
+        self.__startGame()
     
     def __startGame(self):
         print("Hello " + self.name)
@@ -18,20 +19,23 @@ class magic8ball:
             else:
                 print("Thank you for playing")
                 self.__writeQuestions()
-                sys.exit
+                sys.exit()
     
     def __writeQuestions(self):
         try:
-            fileName = self.name + ".csv"
-            testFile = os.path.isfile(fileName +".csv")
+            fileName = self.name.replace(" ", "_") + ".csv"
+            print(os.getcwd())
+            testFile = os.path.isfile(fileName) # This is used to check to see if the file exist, the program will respond appropriately
             if testFile == False:
                 print("Creating your Question file")    
             file = open(fileName, "a+", newline="")
             wrt = csv.writer(file)
+            # wrt.writerow(self.__mQuestions)
             for question in self.__mQuestions:
-                wrt.writerow(question)
+                wrt.writerow([question])
             file.close()
-            
-        except IOError:
-            newFile = open(fileName, 'w')
-            
+        except PermissionError:
+            print("Unable to create or update %s due to permission error" %(fileName))
+        except:
+            print("Unknown error occurred while writing %s question file" %(fileName))
+        
