@@ -24,13 +24,11 @@ class Magic8Ball:
     def __writeQuestions(self):
         try:
             fileName = self.name.replace(" ", "_") + ".csv"
-            print(os.getcwd())
             testFile = os.path.isfile(fileName) # This is used to check to see if the file exist, the program will respond appropriately
             if testFile == False:
                 print("Creating your Question file")    
             file = open(fileName, "a+", newline="")
             wrt = csv.writer(file)
-            # wrt.writerow(self.__mQuestions)
             for question in self.__mQuestions:
                 wrt.writerow([question])
             file.close()
